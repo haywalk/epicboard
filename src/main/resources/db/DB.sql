@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS posts;
 CREATE TABLE posts(
-    post_id INTO NOT NULL,
+    post_id INT NOT NULL,
     thread_id INT NOT NULL,
     board varchar(15) NOT NULL,
     post_time BIGINT(255) UNSIGNED NOT NULL,
