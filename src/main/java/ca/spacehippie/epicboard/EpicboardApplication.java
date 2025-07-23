@@ -31,22 +31,31 @@ public class EpicboardApplication {
 	 */
 	@GetMapping("helloworld")
 	public String helloWorld() {
-		String DB_URL = "jdbc:mysql://localhost:3306/epicboard";
-    	String USER = "tbabineau";
-    	String PASS = "z#?kqnny4UhUV5Q";
-    	String QUERY = "SELECT * FROM posts";
-		try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(QUERY);) {
-         // Extract data from result set
-         while (rs.next()) {
-            // Retrieve by column name
-            System.out.println("Success");
-         }
-         return "success";
-      } catch (SQLException e) {
-		return "Failure";
-      } 
+	// 	String DB_URL = "jdbc:mysql://localhost:3306/epicboard";
+    // 	String USER = "epicboard";
+    // 	String PASS = "epic";
+    // 	String QUERY = "SELECT * FROM posts";
+	// 	try { 
+	// 		Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+    //         Statement stmt = conn.createStatement();
+    //         ResultSet rs = stmt.executeQuery(QUERY);
+	// 		// Extract data from result set
+	// 		while (rs.next()) {
+	// 			// Retrieve by column name
+	// 			System.out.println("Success");
+	// 		}
+    //      return "success";
+    //   } catch (SQLException e) {
+	// 	return e.getMessage();
+    //   } 
+		try {
+			Connection conn = DBConnection.instance();
+			System.out.println("connection open");
+			return "done";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return e.getMessage();
+		}
 	}
 
 	/**
