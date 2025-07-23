@@ -64,9 +64,7 @@ public class EpicboardApplication {
 	 */
 	@GetMapping("board")
 	public String getBoard(@RequestParam(value = "id", defaultValue="") String id) {
-		return "json index of board " + id;
-		// SELECT * FROM posts WHERE BOARD = id
-		// return as JSON 
+		return DatabaseAccessor.getBoard(id);
 	}
 
 	/**

@@ -20,6 +20,19 @@ public class DatabaseAccessor {
         return resultSetToJSON(result);
     }
 
+    public static String getBoard(String board) {
+
+        ResultSet result;
+
+        try {
+            result = query("SELECT * FROM posts WHERE board = " + board);
+        } catch (SQLException e){
+            return "Failed to retrieve board";
+        }
+
+        return resultSetToJSON(result);
+    }
+
     private static ResultSet query(String query) throws SQLException {
         Connection conn = DBConnection.instance();
         Statement statement = conn.createStatement();
