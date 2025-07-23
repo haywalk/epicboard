@@ -58,6 +58,8 @@ public class EpicboardApplication {
 	@GetMapping("board")
 	public String getBoard(@RequestParam(value = "id", defaultValue="") String id) {
 		return "json index of board " + id;
+		// SELECT * FROM posts WHERE BOARD = id
+		// return as JSON 
 	}
 
 	/**
@@ -69,6 +71,8 @@ public class EpicboardApplication {
 	@GetMapping("thread")
 	public String getThread(@RequestParam(value = "id", defaultValue="") String id) {
 		return "json content of thread " + id;
+		// SELECT * FROM posts WHERE thread = id
+		// return as JSON
 	}
 
 	/**
@@ -80,6 +84,9 @@ public class EpicboardApplication {
 	@GetMapping("new")
 	public String newThread(@RequestParam(value="id", defaultValue="") String board) {
 		return "created new thread on board " + board;
+		// upload image (required for a thread)
+		// get board as JSON
+		// add post, update DB
 	}
 	
 	/**
@@ -91,5 +98,9 @@ public class EpicboardApplication {
 	@GetMapping("reply")
 	public String replyThread(@RequestParam(value="id", defaultValue="") String id) {
 		return "replied to thread " + id;
+		// upload image if applicable
+		// Get thread as JSON
+		// append reply
+		// update DB
 	}
 }
