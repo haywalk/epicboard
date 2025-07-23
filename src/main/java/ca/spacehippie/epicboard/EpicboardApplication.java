@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import java.sql.*;
 
 /**
  * REST API for EpicBoard.
@@ -31,7 +31,22 @@ public class EpicboardApplication {
 	 */
 	@GetMapping("helloworld")
 	public String helloWorld() {
-		return "Hello, world!";
+		String DB_URL = "jdbc:mysql://localhost:3306/epicboard";
+    	String USER = "tbabineau";
+    	String PASS = "z#?kqnny4UhUV5Q";
+    	String QUERY = "SELECT * FROM posts";
+		try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(QUERY);) {
+         // Extract data from result set
+         while (rs.next()) {
+            // Retrieve by column name
+            System.out.println("Success");
+         }
+         return "success";
+      } catch (SQLException e) {
+		return "Failure";
+      } 
 	}
 
 	/**
