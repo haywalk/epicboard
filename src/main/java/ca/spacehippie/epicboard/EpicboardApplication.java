@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 /**
  * REST API for EpicBoard.
@@ -24,10 +26,55 @@ public class EpicboardApplication {
 
 	/**
 	 * Bare-bones endpoint /api/helloworld 
+	 * 
 	 * @return  "Hello, world!"
 	 */
 	@GetMapping("helloworld")
 	public String helloWorld() {
 		return "Hello, world!";
+	}
+
+	/**
+	 * Return a board's index.
+	 * 
+	 * @param id Board ID (name).
+	 * @return JSON index of board.
+	 */
+	@GetMapping("board")
+	public String getBoard(@RequestParam(value = "id", defaultValue="") String id) {
+		return "json index of board " + id;
+	}
+
+	/**
+	 * Return a thread.
+	 * 
+	 * @param id Thread ID. 
+	 * @reutrn JSON content of thread.
+	 */
+	@GetMapping("thread")
+	public String getThread(@RequestParam(value = "id", defaultValue="") String id) {
+		return "json content of thread " + id;
+	}
+
+	/**
+	 * Create a thread.
+	 * 
+	 * @param board Board ID.
+	 * @return Status.
+	 */
+	@GetMapping("new")
+	public String newThread(@RequestParam(value="id", defaultValue="") String board) {
+		return "created new thread on board " + board;
+	}
+	
+	/**
+	 * Reply to a thread.
+	 * 
+	 * @param id Thread ID.
+	 * @return Status.
+	 */
+	@GetMapping("reply")
+	public String replyThread(@RequestParam(value="id", defaultValue="") String id) {
+		return "replied to thread " + id;
 	}
 }
