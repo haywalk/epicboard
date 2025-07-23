@@ -25,6 +25,9 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	implementation("org.mariadb.jdbc:mariadb-java-client:3.3.1")
+	// https://mvnrepository.com/artifact/org.json/json
+	// https://stleary.github.io/JSON-java/index.html
+	implementation("org.json:json:20210307")
 }
 
 tasks.withType<Test> {

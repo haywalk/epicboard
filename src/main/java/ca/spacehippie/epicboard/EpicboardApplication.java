@@ -49,8 +49,6 @@ public class EpicboardApplication {
 	// 	return e.getMessage();
     //   } 
 		try {
-			Connection conn = DBConnection.instance();
-			System.out.println("connection open");
 			return "done";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -79,9 +77,10 @@ public class EpicboardApplication {
 	 */
 	@GetMapping("thread")
 	public String getThread(@RequestParam(value = "id", defaultValue="") String id) {
-		return "json content of thread " + id;
+		//return "json content of thread " + id;
 		// SELECT * FROM posts WHERE thread = id
 		// return as JSON
+		return DatabaseAccessor.getThread(id);
 	}
 
 	/**
